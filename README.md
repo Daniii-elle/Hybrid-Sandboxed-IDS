@@ -272,6 +272,28 @@ $env:IDS_DASHBOARD_PORT = '5000'
 ### OR
 Edit all values in .env file. Use .env.example as a guide
 
+```.env:
+# SMTP / email settings
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=danielleerusiafe@gmail.com
+SMTP_PASSWORD=avej nzya jhin cutd
+REPORT_TO=danielle.erusiafe@miva.edu.ng
+REPORT_FROM=Smart Grid IDS <danielleerusiafe@gmail.com>
+
+# Dashboard and ELK settings
+DASHBOARD_URL=http://localhost:5000
+IDS_DASHBOARD_PORT=5000
+IDS_DASHBOARD_HOST=0.0.0.0
+ELK_HOST=localhost
+ELK_PORT=9201
+
+# Sandbox / cloud analysis keys (optional)
+VIRUSTOTAL_API_KEY=
+HYBRID_ANALYSIS_API_KEY=
+SANDBOX_SERVICE=virustotal
+```
+
 ---
 ## Detection Pipeline — What to Expect
 
