@@ -1,0 +1,68 @@
+Suricata Alert: ET MALWARE Suspicious HTTP Traffic
+Suricata Alert: ET MALWARE Suspicious SSL Connection
+Initializing ELK indices...
+ELK system ready
+Hybrid IDS Running...
+
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}
+- {'timestamp': '2023-12-01T10:00:01.000000+0000', 'src_ip': '192.168.1.101', 'dest_ip': '10.0.0.2', 'signature': 'ET MALWARE Suspicious SSL Connection', 'severity': 2, 'protocol': 'TCP'}
+Suricata Alerts:
+- {'timestamp': '2023-12-01T10:00:00.000000+0000', 'src_ip': '192.168.1.100', 'dest_ip': '10.0.0.1', 'signature': 'ET MALWARE Suspicious HTTP Traffic', 'severity': 1, 'protocol': 'TCP'}

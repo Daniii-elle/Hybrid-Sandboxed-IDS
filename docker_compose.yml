@@ -1,0 +1,81 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9201:9200"
+      - "9301:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - ids_network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 60s
+    restart: unless-stopped
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601" 
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - ids_network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  zeek:
+    image: zeek/zeek:latest
+    container_name: zeek
+    command: ["zeek", "-i", "eth0", "local"]
+    volumes:
+      - ./logs:/usr/local/zeek/logs
+    networks:
+      - ids_network
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+
+  suricata:
+    image: jasonish/suricata:latest
+    container_name: suricata
+    command: ["suricata", "-c", "/etc/suricata/suricata.yaml", "-i", "eth0"]
+    cap_add:
+      - NET_ADMIN
+      - SYS_NICE
+    volumes:
+      - ./logs:/var/log/suricata
+      - ./suricata-config:/etc/suricata
+    networks:
+      - ids_network
+    environment:
+      - SURICATA_HOME=/etc/suricata
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+
+volumes:
+  elasticsearch_data:
+    driver: local
+
+networks:
+  ids_network:
+    driver: bridge

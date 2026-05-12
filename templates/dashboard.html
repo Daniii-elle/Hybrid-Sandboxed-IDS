@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Grid IDS Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --info-color: #3498db;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+        }
+
+        .container-main {
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .header-card h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-card p {
+            color: #7f8c8d;
+            margin: 5px 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        /* Threat Level Badge */
+        .threat-level-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .threat-badge {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .threat-badge.danger {
+            background-color: #ffe0e0;
+            color: #c0392b;
+        }
+
+        .threat-badge.warning {
+            background-color: #fff4e6;
+            color: #d68910;
+        }
+
+        .threat-badge.info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .threat-badge.success {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .threat-message {
+            color: #555;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #3498db;
+        }
+
+        .summary-card.anomalies {
+            border-top-color: #f39c12;
+        }
+
+        .summary-card.alerts {
+            border-top-color: #e74c3c;
+        }
+
+        .summary-card.sandbox {
+            border-top-color: #9b59b6;
+        }
+
+        .summary-card h3 {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin: 0 0 15px 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .summary-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .summary-card .label {
+            color: #95a5a6;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header .badge-count {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .section-body {
+            padding: 20px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #95a5a6;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: #bdc3c7;
+            margin-bottom: 15px;
+        }
+
+        /* List items */
+        .result-item {
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            background: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .result-item.anomaly {
+            border-left-color: #f39c12;
+        }
+
+        .result-item.alert {
+            border-left-color: #e74c3c;
+        }
+
+        .result-item.sandbox {
+            border-left-color: #9b59b6;
+        }
+
+        .result-item.malicious {
+            border-left-color: #c0392b;
+            background: #fadbd8;
+        }
+
+        .result-item h4 {
+            margin: 0 0 8px 0;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .result-item p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .result-item .meta {
+            font-size: 0.85rem;
+            color: #95a5a6;
+            margin-top: 8px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge-severity {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-severity.critical {
+            background: #fadbd8;
+            color: #c0392b;
+        }
+
+        .badge-severity.high {
+            background: #fde8e2;
+            color: #d35400;
+        }
+
+        .badge-severity.medium {
+            background: #fef5e7;
+            color: #f39c12;
+        }
+
+        .badge-severity.low {
+            background: #e8f8f5;
+            color: #16a085;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: #95a5a6;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .threat-badge {
+                font-size: 1.8rem;
+                min-width: 200px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Alert banner for ELK issues */
+        .alert-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container container-main">
+        <!-- Header -->
+        <div class="header-card">
+            <h1>
+                <i class="fas fa-shield-alt"></i>
+                Smart Grid Security Dashboard
+            </h1>
+            <p>Hybrid Sandboxed Intrusion Detection System — Real-time Threat Monitoring</p>
+            <p style="font-size: 0.85rem; margin-top: 10px;">
+                <i class="far fa-clock"></i>
+                Report generated: <strong>{{ generated_at }}</strong>
+            </p>
+        </div>
+
+        <!-- Threat Level -->
+        <div class="threat-level-card">
+            <div class="threat-badge {{ threat_color }}">
+                {{ threat_status }}
+            </div>
+            <div class="threat-message">
+                {{ threat_message }}
+            </div>
+        </div>
+
+        <!-- ELK Warning -->
+        {% if not elk_available and elk_error %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i class="fas fa-info-circle"></i>
+            <strong>ELK Data:</strong> {{ elk_error }}. Showing results from local disk cache.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+            <div class="summary-card anomalies">
+                <h3>
+                    <i class="fas fa-exclamation-circle"></i>
+                    Unusual Connections
+                </h3>
+                <p class="number">{{ anomaly_count }}</p>
+                <p class="label">Flagged by behavior analysis</p>
+            </div>
+
+            <div class="summary-card alerts">
+                <h3>
+                    <i class="fas fa-flag"></i>
+                    Known Attack Signatures
+                </h3>
+                <p class="number">{{ alert_count }}</p>
+                <p class="label">Matched against Suricata rules</p>
+            </div>
+
+            <div class="summary-card sandbox">
+                <h3>
+                    <i class="fas fa-vial"></i>
+                    Sandbox Analyses
+                </h3>
+                <p class="number">{{ sandbox_count }}</p>
+                <p class="label">{{ malicious_files }} malicious detected</p>
+            </div>
+        </div>
+
+        <!-- Section 1: Unusual Connections (Anomalies) -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-network-wired"></i>
+                    Unusual Connections Detected
+                    <span class="badge-count">{{ anomaly_count }} anomal{{ anomaly_count|int == 1 and 'y' or 'ies' }}</span>
+                </h2>
+            </div>
+            <div class="section-body">
+                {% if anomalies %}
+                    {% for anom in anomalies %}
+                    <div class="result-item anomaly">
+                        <h4>Suspicious Connection #{{ loop.index }}</h4>
+                        <p>
+                            <strong>Data sent:</strong>
+                            {% if anom.src_bytes %}
+                                {% set sb = anom.src_bytes|int %}
+                                {% if sb < 1024 %}{{ sb }} B{% elif sb < 1024*1024 %}{{ "%.1f"|format(sb/1024) }} KB{% else %}{{ "%.1f"|format(sb/1024/1024) }} MB{% endif %}
+                            {% else %}Unknown{% endif %}
+                        </p>
+                        <p>
+                            <strong>Data received:</strong>
+                            {% if anom.dst_bytes %}
+                                {% set db = anom.dst_bytes|int %}
+                                {% if db < 1024 %}{{ db }} B{% elif db < 1024*1024 %}{{ "%.1f"|format(db/1024) }} KB{% else %}{{ "%.1f"|format(db/1024/1024) }} MB{% endif %}
+                            {% else %}Unknown{% endif %}
+                        </p>
+                        <p>
+                            <strong>Duration:</strong>
+                            {% if anom.duration %}
+                                {% set dur = anom.duration|float %}
+                                {% if dur < 60 %}{{ "%.1f"|format(dur) }} seconds{% elif dur < 3600 %}{{ "%.1f"|format(dur/60) }} minutes{% else %}{{ "%.1f"|format(dur/3600) }} hours{% endif %}
+                            {% else %}Unknown{% endif %}
+                        </p>
+                        <div class="meta">
+                            {% if anom.file %}
+                            <span><i class="fas fa-file"></i> {{ anom.file }}</span>
+                            {% endif %}
+                            {% if anom.timestamp %}
+                            <span><i class="far fa-clock"></i> {{ anom.timestamp|default('N/A') }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-check-circle"></i>
+                    <p><strong>No unusual connections detected.</strong></p>
+                    <p>All observed network traffic is within normal smart grid operating parameters.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Section 2: Suricata Alerts -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Known Attack Signatures Matched
+                    <span class="badge-count">{{ alert_count }} alert{{ alert_count|int == 1 and '' or 's' }}</span>
+                </h2>
+            </div>
+            <div class="section-body">
+                {% if alerts %}
+                    {% for alert in alerts %}
+                    <div class="result-item alert">
+                        <h4>
+                            Signature Match #{{ loop.index }}
+                            <span class="badge-severity {% if alert.severity|int == 1 %}critical{% elif alert.severity|int == 2 %}high{% elif alert.severity|int == 3 %}medium{% else %}low{% endif %}">
+                                {% if alert.severity|int == 1 %}Critical{% elif alert.severity|int == 2 %}High{% elif alert.severity|int == 3 %}Medium{% else %}Info{% endif %}
+                            </span>
+                        </h4>
+                        <p><strong>Rule:</strong> {{ alert.signature }}</p>
+                        <p>
+                            <strong>From:</strong> {{ alert.src_ip }} <i class="fas fa-arrow-right"></i>
+                            <strong>To:</strong> {{ alert.dest_ip }}
+                        </p>
+                        <p><strong>Protocol:</strong> {{ alert.protocol }}</p>
+                        <div class="meta">
+                            {% if alert.timestamp %}
+                            <span><i class="far fa-clock"></i> {{ alert.timestamp }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-shield-check"></i>
+                    <p><strong>No attack signatures matched.</strong></p>
+                    <p>No known attack patterns were detected in the network traffic.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Section 3: Sandbox Results -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-microscope"></i>
+                    Sandbox Analysis Results
+                    <span class="badge-count">{{ sandbox_count }} {{ 'analysis' if sandbox_count|int == 1 else 'analyses' }}</span>
+                </h2>
+            </div>
+            <div class="section-body">
+                {% if sandbox_results %}
+                    {% for result in sandbox_results %}
+                    <div class="result-item sandbox {% if result.malicious and result.malicious > 0 %}malicious{% endif %}">
+                        <h4>
+                            Analysis Result #{{ loop.index }}
+                            {% if result.malicious and result.malicious > 0 %}
+                            <span class="badge-severity critical">
+                                {{ result.malicious }} Malicious Detection{{ result.malicious > 1 and 's' or '' }}
+                            </span>
+                            {% elif result.suspicious and result.suspicious > 0 %}
+                            <span class="badge-severity medium">
+                                {{ result.suspicious }} Suspicious
+                            </span>
+                            {% endif %}
+                        </h4>
+                        
+                        {% if result.provider %}
+                        <p>
+                            <strong>Provider:</strong> {{ result.provider }}
+                        </p>
+                        {% endif %}
+                        
+                        {% if result.malicious is defined %}
+                        <p>
+                            <strong>Detection Summary:</strong>
+                            {{ result.malicious }} Malicious · 
+                            {{ result.suspicious|default(0) }} Suspicious · 
+                            {{ result.undetected|default(0) }} Undetected
+                        </p>
+                        {% endif %}
+                        
+                        {% if result.hash %}
+                        <p>
+                            <strong>File Hash (SHA-256):</strong>
+                            <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">{{ result.hash[:32] }}...</code>
+                        </p>
+                        {% endif %}
+                        
+                        <div class="meta">
+                            {% if result.file %}
+                            <span><i class="fas fa-file"></i> {{ result.file }}</span>
+                            {% endif %}
+                            {% if result.url %}
+                            <span><a href="{{ result.url }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> View Full Report
+                            </a></span>
+                            {% endif %}
+                            {% if result.timestamp %}
+                            <span><i class="far fa-clock"></i> {{ result.timestamp }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-check-circle"></i>
+                    <p><strong>No sandbox analyses performed.</strong></p>
+                    <p>No files were submitted to the isolated sandbox environment during this monitoring period.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>
+                <i class="fas fa-info-circle"></i>
+                <strong>About this report:</strong> This dashboard is automatically generated by the
+                <strong>Hybrid Sandboxed Intrusion Detection System</strong>.
+                It integrates real-time threat detection from multiple security layers:
+                Anomaly-based behavioral analysis (Zeek/Isolation Forest), signature-based detection (Suricata),
+                isolated file analysis (Docker), and multi-engine verification (VirusTotal).
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85rem;">
+                Final Year Project · Danielle Mbala Erusiafe · Department of Cyber Security, Miva Open University
+                | <a href="/api/summary">JSON Summary</a> |
+                <a href="http://localhost:5601" target="_blank" rel="noopener noreferrer">ELK Dashboard</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto-refresh dashboard every 30 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>
