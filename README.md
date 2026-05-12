@@ -41,6 +41,7 @@ Hybrid-Sandboxed-IDS-for-Zero-Day-Threats-in-Smart-Grids/
 │
 ├── ids_full_system.py              # Main IDS pipeline (train → monitor → alert → sandbox → ELK)
 ├── elk_api.py                      # ELK Stack API client (index management, search, health)
+├── test_elk_api.py                 # Tests ELK functionality for system
 ├── test_attack_generator.py        # Live attack simulation script (10 smart grid scenarios)
 ├── log_generator.py                # Synthetic normal traffic log generator
 ├── setup_elk.py                    # ELK index initialisation helper
@@ -50,7 +51,14 @@ Hybrid-Sandboxed-IDS-for-Zero-Day-Threats-in-Smart-Grids/
 ├── ids_system.log                  # IDS runtime output log
 ├── ids_system_error.log            # IDS error log
 ├── ids_system_live.log             # Live monitoring output log
-├── 
+dashboard html
+├── templates/                      # Dashboard html files
+│   ├── dashboard.html              # Main dashboard html file
+│   ├── error.html                  # html error
+dashboard setup
+├── requirements.txt                # Flask setup
+├── dashboard_app.py                # Dashboard creation
+├── setup_dashboard.py              # Flask dashboard setup
 └── README.md                       # This file
 ```
 
